@@ -51,7 +51,7 @@
 	<a href="/faq/" class:current-page={pathStartsWith('/faq')}>FAQ</a>
 	<a href="/blog/" class:current-page={pathStartsWith('/blog')}>News</a>
 	<a href="/about/" class:current-page={pathStartsWith('/about')}>About</a>
-	<a href="https://github.com/bluesky-astronomy"><Icon name="github" /></a>
+	<a href="https://github.com/the-astrosky-ecosystem"><Icon name="github" /></a>
 </div>
 
 <style>
