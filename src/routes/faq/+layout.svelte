@@ -1,9 +1,8 @@
 <script>
 	import { Accordion } from 'bits-ui';
 	import Question from './Question.svelte';
-	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
 	import { getFeedInfoSync } from '$lib/js/cache.svelte.js';
+	import { socials } from '$lib/config.js';
 
 	let { data, children } = $props();
 
@@ -69,7 +68,7 @@
 	</Question>
 
 	<Question title="What kinds of posts are allowed?">
-		The feeds have a number of <a href="https://github.com/bluesky-astronomy/rules">rules</a> that
+		The feeds have a number of <a href="{socials['github']}/rules">rules</a> that
 		we ask posters to follow.
 		<br /><br />
 		If you have any questions, or think you've spotted a post that breaks these rules, then you should

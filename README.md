@@ -1,11 +1,11 @@
-[![Deploy to GitHub Pages](https://github.com/bluesky-astronomy/website/actions/workflows/deploy.yml/badge.svg)](https://github.com/bluesky-astronomy/website/actions/workflows/deploy.yml)
+[![Deploy to GitHub Pages](https://github.com/the-astrosky-ecosystem/website/actions/workflows/deploy.yml/badge.svg)](https://github.com/the-astrosky-ecosystem/website/actions/workflows/deploy.yml)
 
 
 # Website
 
 This repo contains the source for [The Astrosky Ecosystem's website.](https://astrosky.eco)
 
-Instructions for how to develop it locally can be found in [our development guide.](https://github.com/bluesky-astronomy/development-guide#svelte-projects-for-now-just-the-website)
+Instructions for how to develop it locally can be found in [our development guide.](https://github.com/the-astrosky-ecosystem/development-guide#svelte-projects-for-now-just-the-website)
 
 
 ## Image credits
@@ -33,7 +33,7 @@ Throughout this repo, a number of free stock photos from [pexels](https://www.pe
 
 `static/assets/feed-headers/instrumentation.png`: Photo by Kelly: https://www.pexels.com/photo/observatory-during-nighttime-2928587/
 
-`static/assets/feed-headers/methods.png`: Created from code in [ocelot](github.com/emilyhunt/ocelot) (Emily Hunt)
+`static/assets/feed-headers/methods.png`: Created from code in [ocelot](https://github.com/emilyhunt/ocelot) (Emily Hunt)
 
 `static/assets/feed-headers/milkyway.png`: Photo by Philippe Donn: https://www.pexels.com/photo/milky-way-illustration-1169754/
 
