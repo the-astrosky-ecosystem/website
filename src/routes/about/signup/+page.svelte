@@ -1,5 +1,6 @@
 <script>
 	import Image from '$lib/blocks/Image.svelte';
+	import { socials } from '$lib/config.js';
 </script>
 
 <h1>Sign up to post to our feeds</h1>
@@ -20,7 +21,7 @@
 
 <p>
 	If that's not you, don't worry! <strong>Anyone</strong> can reply to posts in the feeds and engage
-	in discussions, just you won't be able to sign up to have your posts appear there.
+	in discussions, you just won't be able to sign up to have your posts appear there.
 </p>
 
 <h2>Signing up</h2>
@@ -49,7 +50,7 @@
 <Image src="/assets/signup/bot-reply.webp" style="width: 100%; max-width: 500px;" />
 
 <p>
-	The bot will ask you to <a href="https://github.com/bluesky-astronomy/rules"
+	The bot will ask you to <a href="{socials['github']}/rules"
 		>accept the rules of the feeds</a
 	> and explain why you'd like to sign up. After that, a moderator will verify your sign up.
 </p>

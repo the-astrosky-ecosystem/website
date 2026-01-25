@@ -1,9 +1,7 @@
 <script>
 	import { socials } from '$lib/config.js';
-	import { icons } from '$lib/icons.js';
 	import { getPosts } from '$lib/js/posts.js';
 	import Icon from '$lib/blocks/Icon.svelte';
-	import OpenCollectiveDonate from './OpenCollectiveDonate.svelte';
 
 	const year = new Date().getFullYear();
 
@@ -28,7 +26,7 @@
 					{/each}
 				</div>
 			</div>
-			<!-- <p style="margin-top: 35px; margin-bottom: 0px"><a href="https://github.com/bluesky-astronomy/website">Website source code</a></p> -->
+			<!-- <p style="margin-top: 35px; margin-bottom: 0px"><a href="https://github.com/the-astrosky-ecosystem/website">Website source code</a></p> -->
 			<p style="margin-top: 5px; margin-bottom: 5px">© The Astrosky Ecosystem {year}</p>
 			<p style="margin-top: 0px; margin-bottom: 5px">
 				Support us on <a href="https://opencollective.com/the-astrosky-ecosystem" target="_blank"

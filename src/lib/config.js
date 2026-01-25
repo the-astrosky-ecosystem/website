@@ -8,7 +8,7 @@ export const siteDescription =
 // Ensure that any icons are also in icons.js
 export const socials = {
 	bluesky: 'https://bsky.app/profile/astronomy.blue',
-	github: 'https://github.com/bluesky-astronomy'
+	github: 'https://github.com/the-astrosky-ecosystem'
 	// email: 'mailto:...@...'
 };
 
