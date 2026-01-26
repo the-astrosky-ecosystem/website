@@ -93,9 +93,9 @@
 	</Question>
 
 	<Question title="How do you do this for free?">
-		We don't! We incur a small hosting cost each month - about €40.
-		<br /><br />
-		In the future, we're planning on making a way to collect donations for hosting the feeds.
+		We don't! But we are incredibly thankful that members of our community crowdfund the continued operation of our feeds, which currently incurs hosting costs of around €40/month. You can check out our current funding status on <a href="https://opencollective.com/the-astrosky-ecosystem">Open Collective</a>. 
+		<br><br>
+		If you really enjoy what we're doing and have money to give, then we'd be extremely appreciative of any donation - no matter how small!
 	</Question>
 
 	<Question title="What if I still have a question?">
