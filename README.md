@@ -7,6 +7,10 @@ This repo contains the source for [The Astrosky Ecosystem's website.](https://as
 
 Instructions for how to develop it locally can be found in [our development guide.](https://github.com/the-astrosky-ecosystem/development-guide#svelte-projects-for-now-just-the-website)
 
+The website is static and hosted on GitHub Pages. The site is built with SvelteKit.
+
+Currently, the Bluesky API is used in a couple of spots to query the current list of feeds and grab images and information for them.
+
 
 ## Image credits
 
