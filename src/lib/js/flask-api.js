@@ -1,41 +1,45 @@
 import { getActorFeeds } from './bsky-api.js';
 
 export const prodServerEndpoint = 'https://feeds.astrosky.eco';
-export const devServerEndpoint = 'http://127.0.0.1:8000';
+export const devServerEndpoint = 'http://127.0.0.1:5000';
 
 // Fetches the current list of feeds from Bluesky.
-export async function getFeedList(flaskEndpoint) {
-	if (flaskEndpoint === undefined) {
-		flaskEndpoint = prodServerEndpoint;
-	}
-	const endpoint = `${flaskEndpoint}/api/app.getFeedList`;
-	console.log(`Querying endpoint at ${endpoint}`);
-	// const response = await fetch('https://feed-all.astronomy.blue/api/app.getFeedList');
-	const response = await fetch(endpoint, {
+export async function getFeedList(flaskEndpoint = prodServerEndpoint) {
+
+	const response = await fetch(`${flaskEndpoint}/api/app.getFeedList`, {
 		signal: AbortSignal.timeout(10000) // 10 second timeout
 	});
 	if (!response.ok) {
 		throw new Error(`Failed to download getFeedList API route. Status: ${response.status}`);
 	}
+	
 	const json = await response.json();
+	console.log(json)
 	Object.keys(json).forEach((key) => {
 		// Edge case where some feeds don't come as an object
 		// Todo: backend should be improved here
 		if (json[key] === null) {
-			json[key] = new Object();
-			json[key].emoji = new Array();
-			json[key].words = ['All posts from all feeds'];
+			json[key] = {
+				emoji: [],
+				words: ['All posts from all feeds']
+			}
 		}
 	});
+	
 	return json;
 }
 
 // Runs getFeedList, AND also mixes in any additional Bluesky info.
 // This function is intended for use for pre-caching feed information.
 export async function getFeedListWithBskyInfo(flaskEndpoint) {
-	const [flaskInfo, blueskyInfo] = await Promise.all([getFeedList(), getActorFeeds()]);
+	const [flaskInfo, blueskyInfo] 
+		= await Promise.all([
+			getFeedList( flaskEndpoint ),
+			getActorFeeds()
+		]
+	);
 
-	let feedInfo = new Object();
+	let feedInfo = {};
 
 	// Combine into two arrays & set various data
 	// Todo: I think I'd prefer if we used the Flask list instead.

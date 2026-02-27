@@ -29,6 +29,7 @@ async function performAPIPreQuery() {
 	if (process.env.NODE_ENV === 'development') {
 		endpoint = devServerEndpoint;
 	}
+	console.log('APIPreQuery: Fetching current feed list. URL =', endpoint);
 	console.log('APIPreQuery: Fetching current feed list. Mode =', process.env.NODE_ENV);
 
 	let feedInfo = await getFeedListWithBskyInfo(endpoint);
