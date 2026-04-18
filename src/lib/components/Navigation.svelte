@@ -53,9 +53,8 @@
 	<a href="/faq/" class:current-page={pathStartsWith('/faq')}>FAQ</a>
 	<a href="/blog/" class:current-page={pathStartsWith('/blog')}>News</a>
 	<a href="/about/" class:current-page={pathStartsWith('/about')}>About</a>
-	<a href="/about/" class:current-page={pathStartsWith('/login')}>Login</a>
+	<a href="/login/" class:current-page={pathStartsWith('/login')}>Login</a>
 	<a href={socials["github"]}><Icon name="github" /></a>
-
 </div>
 
 <style>

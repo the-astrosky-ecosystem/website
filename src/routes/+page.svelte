@@ -1,8 +1,43 @@
 <script>
 	import ImageWithText from '../lib/blocks/ImageWithText.svelte';
+	import { onMount, setContext } from 'svelte';
 
 	const imageWithTextStyle = 'width: 100%; max-width: 400px;';
+
+	let testResponse = null, realResponse = null;
+
+	onMount(() => {
+
+		// let response = fetch("http://127.0.0.1:5000/atmos/handle") //, {credentials: 'include'})
+		// 	.then(res => {
+		// 		console.log(res);
+		// 		return res.json()
+		// 	});
+		testResponse = fetch("http://127.0.0.1:5000/atmos/test", {credentials: 'include'})
+			.then(res => res.json())
+			.then(data => data.handle )
+
+		realResponse = fetch("http://127.0.0.1:5000/atmos/handle", {credentials: 'include'})
+			.then(res => res.json())
+			.then(data => data.handle )
+
+		// const aResponse = fetch("http://127.0.0.1:5000/atmos/set", {credentials: 'include'})
+		// 	.then(res => {
+		// 		console.log("i set")
+		// 		fetch("http://127.0.0.1:5000/atmos/get", {credentials: 'include'})
+		// 			.then((res)=>res.text())
+		// 			.then((text=>console.log(text)))
+		// 	})
+	})
 </script>
+
+{#await testResponse then testHandle}
+	<h1>Test handle: "{testHandle}"</h1>
+{/await}
+
+{#await realResponse then realHandle}
+	<h1>Real handle: "{realHandle}"</h1>
+{/await}
 
 <ImageWithText
 	swap
