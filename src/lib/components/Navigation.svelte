@@ -2,8 +2,11 @@
 	import { page } from '$app/stores';
 	import Icon from '$lib/blocks/Icon.svelte';
 	import { socials } from '$lib/config.js';
+	import { getContext } from 'svelte';
 
 	let { textColor } = $props();
+
+	const user = getContext("User")
 
 	function pathIs(string) {
 		return $page.url.pathname === string;
@@ -53,8 +56,16 @@
 	<a href="/faq/" class:current-page={pathStartsWith('/faq')}>FAQ</a>
 	<a href="/blog/" class:current-page={pathStartsWith('/blog')}>News</a>
 	<a href="/about/" class:current-page={pathStartsWith('/about')}>About</a>
-	<a href="/login/" class:current-page={pathStartsWith('/login')}>Login</a>
-	<a href={socials["github"]}><Icon name="github" /></a>
+	{#if $user.loggedIn}
+		<a href={socials["github"]}><Icon name="github" /></a>
+		<div style="margin-left:30px">
+			<Icon name="user" style="width:30px;height:30px" />
+			<span>{$user.handle}</span>
+		</div>
+	{:else}
+		<a href="/login/" class:current-page={pathStartsWith('/login')}>Login</a>
+		<a href={socials["github"]}><Icon name="github" /></a>
+	{/if}
 </div>
 
 <style>

@@ -6,6 +6,7 @@ import Fa6BrandsMastodon from '~icons/fa6-brands/mastodon';
 import Fa6BrandsGithub from '~icons/fa6-brands/github';
 import MdiEmail from '~icons/mdi/email';
 import MdiHamburgerMenu from '~icons/mdi/hamburger-menu';
+import MdiUser from '~icons/mdi/user';
 
 export const icons = {
 	bluesky: Fa6BrandsBluesky,
@@ -14,5 +15,6 @@ export const icons = {
 	github: Fa6BrandsGithub,
 	email: MdiEmail,
 	hamburger: MdiHamburgerMenu,
+	user: MdiUser,
 	// caret: 
 };
