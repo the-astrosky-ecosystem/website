@@ -14,7 +14,6 @@ export async function getFeedList(flaskEndpoint = prodServerEndpoint) {
 	}
 	
 	const json = await response.json();
-	console.log(json)
 	Object.keys(json).forEach((key) => {
 		// Edge case where some feeds don't come as an object
 		// Todo: backend should be improved here
