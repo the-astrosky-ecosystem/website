@@ -1,6 +1,6 @@
 import { getActorFeeds } from './bsky-api.js';
 
-export const prodServerEndpoint = 'https://feed-all.astronomy.blue';
+export const prodServerEndpoint = 'https://feeds.astrosky.eco';
 export const devServerEndpoint = 'http://127.0.0.1:8000';
 
 // Fetches the current list of feeds from Bluesky.
@@ -8,8 +8,12 @@ export async function getFeedList(flaskEndpoint) {
 	if (flaskEndpoint === undefined) {
 		flaskEndpoint = prodServerEndpoint;
 	}
+	const endpoint = `${flaskEndpoint}/api/app.getFeedList`;
+	console.log(`Querying endpoint at ${endpoint}`);
 	// const response = await fetch('https://feed-all.astronomy.blue/api/app.getFeedList');
-	const response = await fetch(`${flaskEndpoint}/api/app.getFeedList`);
+	const response = await fetch(endpoint, {
+		signal: AbortSignal.timeout(10000) // 10 second timeout
+	});
 	if (!response.ok) {
 		throw new Error(`Failed to download getFeedList API route. Status: ${response.status}`);
 	}
@@ -69,7 +73,7 @@ export async function getFeedStatsByMonth(feed, flaskEndpoint) {
 	if (flaskEndpoint === undefined) {
 		flaskEndpoint = prodServerEndpoint;
 		if (import.meta.env.DEV) {
-			console.log("Flask API: using dev endpoint");
+			console.log('Flask API: using dev endpoint');
 			flaskEndpoint = devServerEndpoint;
 		}
 	}
