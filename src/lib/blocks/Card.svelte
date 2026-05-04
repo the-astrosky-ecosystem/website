@@ -15,4 +15,7 @@
 		padding: 20px;
 		margin-bottom: 20px;
 	}
+	.card:hover {
+		background-color: color-mix(in srgb, var(--color-offwhite) 98%, black 2%);
+	}
 </style>

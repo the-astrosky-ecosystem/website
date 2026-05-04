@@ -79,10 +79,17 @@
 
 <!-- STATISTICS -->
 <Flex>
+	<a href={feedURL} class="black-link">
+		<Card width={cardWidth}>
+			<div style="transform: translate(-100px, 0)"></div>
+
+			<p class="card-text"><Icon name="bluesky" style="color: #0886fe; transform: translate(-5px, 5px)" /> View on Bluesky</p>
+		</Card>
+	</a>
 	<Card width={cardWidth}>
 		<p class="card-text">❤️ {numberFormatter.format(feedInfo.likeCount)} likes</p>
 	</Card>
-	<Card width={cardWidth}>
+	<!-- <Card width={cardWidth}>
 		<p class="card-text">
 			🔎
 			{#if viewsLastMonth >= 0}
@@ -91,7 +98,7 @@
 				(loading...)
 			{/if}
 		</p>
-	</Card>
+	</Card> -->
 </Flex>
 
 <p style="margin-top: 50px; font-size: 22px"><a href="/feeds/">↻ Return to feed list</a></p>
@@ -121,6 +128,12 @@
 		padding: 0px;
 		margin: 0px;
 		text-align: center;
+	}
+	.black-link {
+		color: black;
+	}
+	.black-link:hover {
+		color: var(--color-accent-hover);
 	}
 
 	/* Computers

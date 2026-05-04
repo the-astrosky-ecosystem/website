@@ -13,7 +13,7 @@
 
 <p>We run an ecosystem of custom astronomy, astrophysics, and space science feeds.</p>
 
-<p>Click on the links below to find out more.</p>
+<p>Click on the links below to find out more, or to view the feeds on Bluesky.</p>
 
 <!-- {#if sortedFeeds} -->
 {#each sortedFeeds as feed}
