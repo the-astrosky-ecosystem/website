@@ -4,8 +4,8 @@
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
-		"dev": "node prebuild.js && vite dev",
-		"build": "node prebuild.js && vite build",
+		"dev": "node --env-file=.env prebuild.js && vite dev",
+		"build": "node --env-file=.env prebuild.js && vite build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"format": "prettier --write .",

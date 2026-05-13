@@ -2,6 +2,8 @@
 	import { onMount, setContext } from 'svelte';
 	import { writable } from 'svelte/store';
 
+	import { PUBLIC_SERVER_ENDPOINT } from '$env/static/public';
+	
 	const createUser = (handle) => {
 		return {
 			handle: handle,
@@ -14,7 +16,7 @@
 	}
 
 	const fetchUser = async () => {
-		fetch("http://127.0.0.1:5000/atmos/handle", {credentials: 'include'})
+		fetch(`${PUBLIC_SERVER_ENDPOINT}/atmos/handle`, {credentials: 'include'})
 			.then(res => res.json())
 			.then(data => setUser( data.handle ))
 	}

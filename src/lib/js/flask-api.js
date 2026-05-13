@@ -4,7 +4,7 @@ export const prodServerEndpoint = 'https://feeds.astrosky.eco';
 export const devServerEndpoint = 'http://127.0.0.1:5000';
 
 // Fetches the current list of feeds from Bluesky.
-export async function getFeedList(flaskEndpoint = prodServerEndpoint) {
+export async function getFeedList(flaskEndpoint) {
 
 	const response = await fetch(`${flaskEndpoint}/api/app.getFeedList`, {
 		signal: AbortSignal.timeout(10000) // 10 second timeout
@@ -73,13 +73,11 @@ export async function getFeedStatsByMonth(feed, flaskEndpoint) {
 	if (feed === undefined) {
 		feed = 'all';
 	}
+	
 	if (flaskEndpoint === undefined) {
-		flaskEndpoint = prodServerEndpoint;
-		if (import.meta.env.DEV) {
-			console.log('Flask API: using dev endpoint');
-			flaskEndpoint = devServerEndpoint;
-		}
+		flaskEndpoint = process.env.PUBLIC_SERVER_ENDPOINT;
 	}
+	
 	const response = await fetch(
 		`${flaskEndpoint}/api/app.getFeedStats?` +
 			new URLSearchParams({
@@ -88,6 +86,7 @@ export async function getFeedStatsByMonth(feed, flaskEndpoint) {
 				group_by_month: true
 			})
 	);
+	
 	const json = await response.json();
 	return Object.values(json.stats).filter((stats) => stats.feed === feed);
 }

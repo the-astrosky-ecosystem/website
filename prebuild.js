@@ -7,11 +7,8 @@ Running these with node only ensures that everything is already in place when Vi
 starts the build. N.B.: These aren't ran as Vite plugins because certain steps MUST
 happen first, and the async nature of Vite plugins seems to get fucked up with that.
 */
-
 import {
-	getFeedListWithBskyInfo,
-	prodServerEndpoint,
-	devServerEndpoint
+	getFeedListWithBskyInfo
 } from './src/lib/js/flask-api.js';
 import { writeFileSync, writeFile, readFileSync, existsSync } from 'fs';
 import { renderSocialCard, readImageBase64 } from './src/lib/js/social-card.js';
@@ -25,14 +22,16 @@ async function preBuildSteps() {
 }
 
 async function performAPIPreQuery() {
-	let endpoint = prodServerEndpoint;
-	if (process.env.NODE_ENV === 'development') {
-		endpoint = devServerEndpoint;
-	}
-	console.log('APIPreQuery: Fetching current feed list. URL =', endpoint);
-	console.log('APIPreQuery: Fetching current feed list. Mode =', process.env.NODE_ENV);
+	let endpoint = process.env.PUBLIC_SERVER_ENDPOINT;
+	
+	console.log('APIPreQuery: Fetching current feed list:');
+	console.log('APIPreQuery: - URL =', endpoint);
+	console.log('APIPreQuery: - Mode =', process.env.NODE_ENV);
 
 	let feedInfo = await getFeedListWithBskyInfo(endpoint);
+
+	console.log('APIPreQuery: Fetch complete.');
+	
 	writeAPIPreQueryToFile(feedInfo);
 }
 

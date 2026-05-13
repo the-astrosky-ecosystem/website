@@ -1,6 +1,9 @@
+<script>
+	import { PUBLIC_SERVER_ENDPOINT } from '$env/static/public';
+</script>
 <h1>Login to the Atmosphere</h1>
 
-<form method="post" action="http://127.0.0.1:5000/atmos/login">
+<form method="post" action="{PUBLIC_SERVER_ENDPOINT}/atmos/login">
 	<fieldset>
 		<label for="username">Enter your handle to continue</label><br/>
 		<input name="username" id="username" placeholder="@emily.example.com" style="font-family: monospace;" required>
