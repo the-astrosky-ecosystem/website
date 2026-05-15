@@ -1,8 +1,5 @@
 import { getActorFeeds } from './bsky-api.js';
 
-export const prodServerEndpoint = 'https://feeds.astrosky.eco';
-export const devServerEndpoint = 'http://127.0.0.1:5000';
-
 // Fetches the current list of feeds from Bluesky.
 export async function getFeedList(flaskEndpoint) {
 
@@ -12,19 +9,16 @@ export async function getFeedList(flaskEndpoint) {
 	if (!response.ok) {
 		throw new Error(`Failed to download getFeedList API route. Status: ${response.status}`);
 	}
-	
 	const json = await response.json();
 	Object.keys(json).forEach((key) => {
 		// Edge case where some feeds don't come as an object
 		// Todo: backend should be improved here
 		if (json[key] === null) {
-			json[key] = {
-				emoji: [],
-				words: ['All posts from all feeds']
-			}
+			json[key] = new Object();
+			json[key].emoji = new Array();
+			json[key].words = ['All posts from all feeds'];
 		}
 	});
-	
 	return json;
 }
 
@@ -36,7 +30,7 @@ export async function getFeedListWithBskyInfo(flaskEndpoint) {
 		getActorFeeds()
 	]);
 
-	let feedInfo = {};
+	let feedInfo = new Object();
 
 	// Combine into two arrays & set various data
 	// Todo: I think I'd prefer if we used the Flask list instead.

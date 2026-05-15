@@ -38,14 +38,14 @@ function writeAPIPreQueryToFile(feedInfo) {
 }
 
 async function writeSocialCards() {
-	
+	// Does not run in development mode.
 	if (process.env.NODE_ENV === 'development') {
 		console.log('GenerateSocialCards: Skipping generation of social cards.');
 		return;
 	}
 
 	console.log('GenerateSocialCards: Generating social cards for feeds.');
-	
+
 	const feedInfo = getFeedInfo();
 	const fontData = getFontData();
 	const defaultImage = getDefaultImage();
