@@ -25,8 +25,6 @@ async function performAPIPreQuery() {
 	let endpoint = process.env.PUBLIC_SERVER_ENDPOINT;
 	
 	console.log('APIPreQuery: Fetching current feed list:');
-	console.log('APIPreQuery: - URL =', endpoint);
-	console.log('APIPreQuery: - Mode =', process.env.NODE_ENV);
 
 	let feedInfo = await getFeedListWithBskyInfo(endpoint);
 
@@ -40,12 +38,14 @@ function writeAPIPreQueryToFile(feedInfo) {
 }
 
 async function writeSocialCards() {
-	// Does not run in development mode.
+	
 	if (process.env.NODE_ENV === 'development') {
+		console.log('GenerateSocialCards: Skipping generation of social cards.');
 		return;
 	}
 
 	console.log('GenerateSocialCards: Generating social cards for feeds.');
+	
 	const feedInfo = getFeedInfo();
 	const fontData = getFontData();
 	const defaultImage = getDefaultImage();
@@ -60,6 +60,8 @@ async function writeSocialCards() {
 			}
 		});
 	}
+
+	console.log('GenerateSocialCards: Generation complete.');
 }
 
 function getFeedName(feedInfo, feed) {
@@ -93,5 +95,16 @@ function getFontData() {
 	];
 }
 
+
 console.log('Performing pre-build steps...');
-preBuildSteps();
+
+if( process.env.PUBLIC_SERVER_ENDPOINT === undefined ) {
+	console.log('Missing PUBLIC_SERVER_ENDPOINT value in .env file. Quitting');
+	process.exitCode = 1;
+}
+else {
+	console.log('NODE_ENV: ' + process.env.NODE_ENV);
+	console.log('SERVER_ENDPOINT: ' + process.env.PUBLIC_SERVER_ENDPOINT);
+	
+	preBuildSteps();
+}

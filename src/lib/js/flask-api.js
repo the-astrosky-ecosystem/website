@@ -31,12 +31,10 @@ export async function getFeedList(flaskEndpoint) {
 // Runs getFeedList, AND also mixes in any additional Bluesky info.
 // This function is intended for use for pre-caching feed information.
 export async function getFeedListWithBskyInfo(flaskEndpoint) {
-	const [flaskInfo, blueskyInfo] 
-		= await Promise.all([
-			getFeedList( flaskEndpoint ),
-			getActorFeeds()
-		]
-	);
+	const [flaskInfo, blueskyInfo] = await Promise.all([
+		getFeedList( flaskEndpoint ),
+		getActorFeeds()
+	]);
 
 	let feedInfo = {};
 
