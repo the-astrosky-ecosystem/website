@@ -1,37 +1,40 @@
 <script>
+	import * as atproto from '../js/atproto-api';
 	import { onMount, setContext } from 'svelte';
 	import { writable } from 'svelte/store';
-
-	import { PUBLIC_SERVER_ENDPOINT } from '$env/static/public';
 	
-	const createUser = (handle) => {
+	const generateUser = (handle=null) => {
 		return {
 			handle: handle,
 			loggedIn: handle !== null,
 
-			fetchUser,
-			setUser,
-			// todo: Logout functionality...
+			fetchHandle: async () => {
+				const [data] = await atproto.fetchHandle();
+				setUserContent( data?.handle )
+			},
+			
+			setHandle: handle => {
+				setUserContent(handle)
+			},
+			
+			logout: async () => {
+				await atproto.logout()
+				setUserContent(null)
+			},
 		};
 	}
-
-	const fetchUser = async () => {
-		fetch(`${PUBLIC_SERVER_ENDPOINT}/atmos/handle`, {credentials: 'include'})
-			.then(res => res.json())
-			.then(data => setUser( data.handle ))
+	
+	const setUserContent = (handle) => {
+		$user = generateUser(handle)
 	}
-
-	const setUser = (handle) => {
-		$user = createUser(handle)
-	}
-
-	const user = writable(createUser(null));
+	
+	const user = writable(generateUser());
 	setContext('User', user);
 
 	onMount(() => {
-		// When we start we check we are logged in.
+		// When the app starts, check we are logged in.
 		if( !$user.loggedIn) {
-			fetchUser()
+			$user.fetchHandle()
 		}
 	});
 

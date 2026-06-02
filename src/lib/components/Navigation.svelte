@@ -58,10 +58,9 @@
 	<a href="/about/" class:current-page={pathStartsWith('/about')}>About</a>
 	{#if $user.loggedIn}
 		<a href={socials["github"]}><Icon name="github" /></a>
-		<div style="margin-left:30px">
-			<Icon name="user" style="width:30px;height:30px" />
-			<span>{$user.handle}</span>
-		</div>
+		<a href="/user/" class="user" class:current-page={pathStartsWith('/user')} style="border: 1px solid black;padding: 0px 7px 0 4px;border-radius:14px;">
+			<Icon name="user"/> <span style="font-size: smaller;vertical-align: text-top">{$user.handle}</span>
+		</a>
 	{:else}
 		<a href="/login/" class:current-page={pathStartsWith('/login')}>Login</a>
 		<a href={socials["github"]}><Icon name="github" /></a>

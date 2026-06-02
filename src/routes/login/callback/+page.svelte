@@ -25,7 +25,7 @@
 			)
 				.then(res => res.json())
 				.then(data => {
-					$user.setUser(data.handle)
+					$user.setHandle(data.handle)
 					goto("/")
 				})
 				.catch(reason => error = "ServerError: " + reason)
