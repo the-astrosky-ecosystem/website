@@ -1,8 +1,14 @@
 <script>
 	import ImageWithText from '../lib/blocks/ImageWithText.svelte';
+	import {getContext} from 'svelte';
 
 	const imageWithTextStyle = 'width: 100%; max-width: 400px;';
+	const user = getContext('User');
 </script>
+
+{#if $user.loggedIn}
+	<h2>Welcome {$user.handle} !</h2>
+{/if}
 
 <ImageWithText
 	swap

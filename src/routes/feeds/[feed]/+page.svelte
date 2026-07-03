@@ -8,6 +8,7 @@
 	import { numberFormatter } from '$lib/js/format';
 	import { getFeedInfoSync } from '$lib/js/cache.svelte';
 	import { getFeedStatsByMonth } from '$lib/js/flask-api';
+	import { PUBLIC_SERVER_ENDPOINT } from '$env/static/public';
 
 	let { data } = $props();
 
@@ -34,14 +35,18 @@
 
 	onMount(async () => {
 		// Feed request statistics
-		const feedStats = await getFeedStatsByMonth(feed);
+		const feedStats = await getFeedStatsByMonth(feed, PUBLIC_SERVER_ENDPOINT);
 		const oneMonthAgo = new Date();
 		oneMonthAgo.setUTCMonth(oneMonthAgo.getUTCMonth() - 1);
-
-		viewsLastMonth = feedStats.filter(
+		
+		const filteredFeeds = feedStats.filter(
 			(stats) =>
 				stats.month === oneMonthAgo.getUTCMonth() + 1 && stats.year === oneMonthAgo.getUTCFullYear()
-		)[0].num_requests;
+		);
+		if( filteredFeeds.length ) {
+			viewsLastMonth = filteredFeeds[0].num_requests
+		}
+		
 	});
 </script>
 

@@ -1,0 +1,12 @@
+{
+  "client_id": "https://astrosky.eco/oauth-client-metadata.json",
+  "client_name": "The Astrosky Ecosystem",
+  "client_uri": "https://astrosky.eco",
+  "redirect_uris": ["https://astrosky.eco/login/callback"],
+  "scope": "atproto transition:generic",
+  "grant_types": ["authorization_code", "refresh_token"],
+  "response_types": ["code"],
+  "token_endpoint_auth_method": "none",
+  "application_type": "web",
+  "dpop_bound_access_tokens": true
+}

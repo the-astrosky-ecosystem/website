@@ -1,4 +1,6 @@
 <script>
+	import UserContext from '$lib/components/User.svelte';
+
 	let { children } = $props();
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
@@ -80,13 +82,15 @@
 	<meta name="twitter:image" content={head.image} />
 </svelte:head>
 
-<Header />
+<UserContext>
+	<Header />
 
-<div class="slot-container">
-	{@render children()}
-</div>
+	<div class="slot-container">
+			{@render children()}
+	</div>
 
-<Footer />
+	<Footer />
+</UserContext>
 
 <style>
 	.slot-container {

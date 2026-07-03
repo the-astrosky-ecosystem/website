@@ -29,6 +29,7 @@ jobs:
       - name: build
         env:
           BASE_PATH: '/${{ github.event.repository.name }}'
+          PUBLIC_SERVER_ENDPOINT: 'https://feeds.astrosky.eco'
         run: |
           npm run build
 
